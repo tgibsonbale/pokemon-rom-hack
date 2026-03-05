@@ -440,6 +440,7 @@ generated: $(AUTO_GEN_TARGETS)
 %.fastSmol: %      ; $(SMOL) -w $< $@ false false false
 %.smol:     %      ; $(SMOL) -w $< $@
 %.rl:       %      ; $(GFX) $< $@
+data/%.inc: data/%.pory; $(TOOLS_DIR)/poryscript/poryscript -i $< -o $@ -fc $(TOOLS_DIR)/poryscript/font_config.json -cc $(TOOLS_DIR)/poryscript/command_config.json
 
 clean-teachables_intermediates:
 	rm -f $(DATA_SRC_SUBDIR)/tutor_moves.h
