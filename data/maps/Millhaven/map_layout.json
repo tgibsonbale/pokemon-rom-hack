@@ -1,0 +1,10 @@
+{
+    "id": "LAYOUT_MILLHAVEN",
+    "name": "Millhaven",
+    "width": 20,
+    "height": 20,
+    "primary_tileset": "gTileset_General",
+    "secondary_tileset": "gTileset_Littleroot",
+    "border_filepath": "data/maps/Millhaven/border.bin",
+    "blockdata_filepath": "data/maps/Millhaven/map.bin"
+}

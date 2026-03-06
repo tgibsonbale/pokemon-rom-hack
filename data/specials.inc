@@ -638,3 +638,6 @@ gSpecials::
 	def_special UpdateTrainerCardPhotoIcons
 	def_special StickerManGetBragFlags
 	def_special CheckAddCoins
+	def_special ScriptCreateTheoFollower
+	def_special ScriptDestroyTheoFollower
+	

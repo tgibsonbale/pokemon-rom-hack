@@ -1821,6 +1821,20 @@ void ScriptDestroyFollowerNPC(struct ScriptContext *ctx)
     DestroyFollowerNPC();
 }
 
+extern const u8 Millhaven_EventScript_Theo_Dismiss[];
+void ScriptCreateTheoFollower(struct ScriptContext *ctx)
+{
+    if (!FNPC_ENABLE_NPC_FOLLOWERS || PlayerHasFollowerNPC())
+        return;
+    SetFollowerNPCData(FNPC_DATA_BATTLE_PARTNER, 1);
+    CreateFollowerNPC(OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL, 0, Millhaven_EventScript_Theo_Dismiss);
+}
+
+void ScriptDestroyTheoFollower(struct ScriptContext *ctx)
+{
+    DestroyFollowerNPC();
+}
+
 void ScriptFaceFollowerNPC(struct ScriptContext *ctx)
 {
     if (!FNPC_ENABLE_NPC_FOLLOWERS || !PlayerHasFollowerNPC())

@@ -1,0 +1,86 @@
+mapscripts Millhaven_MapScripts {
+}
+
+// ============================================================
+// Millhaven — Companion Scripts
+// Theo: companion #1
+// ============================================================
+
+script Millhaven_EventScript_Theo {
+    lock
+    faceplayer
+    if (var(VAR_ACTIVE_COMPANION) == 1) {
+        goto(Millhaven_EventScript_Theo_Dismiss)
+    }
+    goto(Millhaven_EventScript_Theo_Deploy)
+}
+
+script Millhaven_EventScript_Theo_Deploy {
+    msgbox(Millhaven_Text_Theo_Deploy, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(Millhaven_EventScript_Theo_Deploy_Decline)
+    }
+    setvar(VAR_ACTIVE_COMPANION, 1)
+    setflag(FLAG_COMPANION_1_UNLOCKED)
+    setflag(FLAG_COMPANION_IN_BATTLE)
+    special(ScriptCreateTheoFollower)
+    hideobjectat(1, MAP_MILLHAVEN)
+    msgbox(Millhaven_Text_Theo_DeployConfirm, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Millhaven_EventScript_Theo_Deploy_Decline {
+    msgbox(Millhaven_Text_Theo_DeployDecline, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Millhaven_EventScript_Theo_Dismiss {
+    msgbox(Millhaven_Text_Theo_Dismiss, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(Millhaven_EventScript_Theo_Dismiss_Cancel)
+    }
+    special(ScriptDestroyTheoFollower)
+    showobjectat(1, MAP_MILLHAVEN)
+    setvar(VAR_ACTIVE_COMPANION, 0)
+    clearflag(FLAG_COMPANION_IN_BATTLE)
+    clearflag(FLAG_COMPANION_1_UNLOCKED)
+    msgbox(Millhaven_Text_Theo_DismissConfirm, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Millhaven_EventScript_Theo_Dismiss_Cancel {
+    msgbox(Millhaven_Text_Theo_DismissCancel, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+// ============================================================
+// TEXT
+// ============================================================
+
+text Millhaven_Text_Theo_Deploy {
+    format("Hey! You heading out?\nCome on, I'll come with you.\nTravel together?\p")
+}
+
+text Millhaven_Text_Theo_DeployConfirm {
+    format("Let's go!\pStay close and\ntry not to walk into any bushes.\p")
+}
+
+text Millhaven_Text_Theo_DeployDecline {
+    format("Fair enough. I'll be here\nwhen you're ready.\p")
+}
+
+text Millhaven_Text_Theo_Dismiss {
+    format("Heading back already?\nWant me to wait here?\p")
+}
+
+text Millhaven_Text_Theo_DismissConfirm {
+    format("Got it. I'll wait here.\nCome find me when you need me.\p")
+}
+
+text Millhaven_Text_Theo_DismissCancel {
+    format("Thought so. Let's keep moving.\p")
+}
